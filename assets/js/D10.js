@@ -203,6 +203,9 @@ console.log(rollTheDices(5))
   Scrivi una funzione chiamata "howManyDays" che riceve una data come parametro e ritorna il numero di giorni trascorsi da tale data.
 */
 
+function howManyDays(date) {
+  
+}
 
 /* ESERCIZIO 10
   Scrivi una funzione chiamata "isTodayMyBirthday" che deve ritornare true se oggi è il tuo compleanno, falso negli altri casi.
@@ -462,9 +465,37 @@ console.log (searchByTitle("Avengers"))
   "match" deve includere tutti i film dell'array "movies" fornito che contengono la stringa fornita all'interno del proprio titolo, mentre "unmatch" deve includere tutti i rimanenti.
 */
 
+function searchAndDivide(stringa) {
+  let obj = {
+    match: [],
+    unmatch: []
+  };
+for (let index = 0; index < movies.length; index++) {
+  const element = movies[index].Title;
+  if (element.includes(stringa)) {
+    obj.match.push(movies[index])
+  }
+  else obj.unmatch.push(movies[index])
+
+  
+}
+console.log (obj.match,obj.unmatch)
+}
+searchAndDivide("Lord")
+
+
 /* ESERCIZIO 19
   Scrivi una funzione chiamata "removeIndex" che riceve un numero come parametro e ritorna l'array "movies" fornito privo dell'elemento nella posizione ricevuta come parametro.
 */
+
+function removeIndex(num) {
+  let obj = ["gatto", "cane", "anatra", "formica"]
+  obj.splice(num,1)
+ return obj
+}
+
+console.log (removeIndex(2))
+
 
 // DOM (nota: gli elementi che selezionerai non si trovano realmente nella pagina)
 
@@ -472,9 +503,22 @@ console.log (searchByTitle("Avengers"))
   Scrivi una funzione per selezionare l'elemento dotato di id "container" all'interno della pagina.
 */
 
+function selezionaContainer() {
+  let container = document.querySelector("#container")
+  return container
+}
+console.log(selezionaContainer())
+
+
 /* ESERCIZIO 21
   Scrivi una funzione per selezionare ogni tag <td> all'interno della pagina.
 */
+
+function selezionaTd() {
+  let newTd = document.querySelectorAll("td")
+  return newTd
+}
+console.log(selezionaTd())
 
 /* ESERCIZIO 22
   Scrivi una funzione che, tramite un ciclo, stampa in console il testo contenuto in ogni tag <td> all'interno della pagina.
