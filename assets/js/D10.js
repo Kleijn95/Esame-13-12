@@ -204,8 +204,14 @@ console.log(rollTheDices(5))
 */
 
 function howManyDays(date) {
-  
+  const oggi = new Date();
+  const dataParametro = new Date(date);
+  const differenzaTempo = oggi - dataParametro;
+  const differenzaGiorni = Math.floor(differenzaTempo / (1000 * 60 * 60 * 24));
+  return differenzaGiorni;
 }
+
+console.log(howManyDays('2023-12-14'));
 
 /* ESERCIZIO 10
   Scrivi una funzione chiamata "isTodayMyBirthday" che deve ritornare true se oggi è il tuo compleanno, falso negli altri casi.
@@ -404,7 +410,7 @@ function onlytheYear() {
   let arrayAnniFilm = []
   for (let index = 0; index < movies.length; index++) {
     const element1 = movies[index].Year;
-    
+
     arrayAnniFilm.push(element1)
   }
   console.log(arrayAnniFilm)
@@ -419,9 +425,10 @@ function onlyInLastMillennium() {
   let filmScorsoMillennio = []
   for (let index = 0; index < movies.length; index++) {
     const element = (movies[index].Year);
-   
-   if (element < 2000) {
-    filmScorsoMillennio.push(movies[index])}
+
+    if (element < 2000) {
+      filmScorsoMillennio.push(movies[index])
+    }
   }
   return filmScorsoMillennio
 }
@@ -431,7 +438,8 @@ console.log(onlyInLastMillennium())
 /* ESERCIZIO 16
   Scrivi una funzione chiamata "sumAllTheYears" che ritorna la somma di tutti gli anni in cui sono stati prodotti i film contenuti nell'array "movies" fornito.
 */
-function sumAllTheYears() {let result = 0
+function sumAllTheYears() {
+  let result = 0
   for (let index = 0; index < movies.length; index++) {
     const element = parseInt(movies[index].Year);
     result += element
@@ -439,7 +447,7 @@ function sumAllTheYears() {let result = 0
   return result
 }
 sumAllTheYears()
-console.log (sumAllTheYears())
+console.log(sumAllTheYears())
 
 
 /* ESERCIZIO 17
@@ -453,11 +461,11 @@ function searchByTitle(stringa) {
     if (element.includes(stringa)) {
       result.push(movies[index])
     }
-    
+
   }
   return result
 }
-console.log (searchByTitle("Avengers"))
+console.log(searchByTitle("Avengers"))
 
 
 /* ESERCIZIO 18
@@ -470,16 +478,16 @@ function searchAndDivide(stringa) {
     match: [],
     unmatch: []
   };
-for (let index = 0; index < movies.length; index++) {
-  const element = movies[index].Title;
-  if (element.includes(stringa)) {
-    obj.match.push(movies[index])
-  }
-  else obj.unmatch.push(movies[index])
+  for (let index = 0; index < movies.length; index++) {
+    const element = movies[index].Title;
+    if (element.includes(stringa)) {
+      obj.match.push(movies[index])
+    }
+    else obj.unmatch.push(movies[index])
 
-  
-}
-console.log (obj.match,obj.unmatch)
+
+  }
+  console.log(obj.match, obj.unmatch)
 }
 searchAndDivide("Lord")
 
@@ -490,11 +498,11 @@ searchAndDivide("Lord")
 
 function removeIndex(num) {
   let obj = ["gatto", "cane", "anatra", "formica"]
-  obj.splice(num,1)
- return obj
+  obj.splice(num, 1)
+  return obj
 }
 
-console.log (removeIndex(2))
+console.log(removeIndex(2))
 
 
 // DOM (nota: gli elementi che selezionerai non si trovano realmente nella pagina)
@@ -524,21 +532,68 @@ console.log(selezionaTd())
   Scrivi una funzione che, tramite un ciclo, stampa in console il testo contenuto in ogni tag <td> all'interno della pagina.
 */
 
+let tuttiTd = document.querySelectorAll("td")
+
+function stampTd() {
+  for (let index = 0; index < tuttiTd.length; index++) {
+    const element = tuttiTd[index];
+    console.log(element.innerText)
+  }
+}
+stampTd()
+
 /* ESERCIZIO 23
   Scrivi una funzione per aggiungere un background di colore rosso a ogni link all'interno della pagina.
 */
+
+function coloraLink() {
+  let tuttiLink = document.querySelectorAll("a")
+  for (let index = 0; index < tuttiLink.length; index++) {
+    tuttiLink[index].style.backgroundColor = "red";
+
+  }
+}
+coloraLink()
 
 /* ESERCIZIO 24
   Scrivi una funzione per aggiungere un nuovo elemento alla lista non ordinata con id "myList".
 */
 
+function aggiungoLi() {
+  let listaNonOrdinata = document.querySelector("#myList")
+  console.log(listaNonOrdinata)
+  let listItem = document.createElement("li")
+  listItem.innerText = "Sono un elemento li generato da JS"
+  listaNonOrdinata.appendChild(listItem)
+}
+aggiungoLi()
+
 /* ESERCIZIO 25
   Scrivi una funzione per svuotare la lista non ordinata con id "myList".
 */
 
+function svuotaLista() {
+  let listaNonOrdinata = document.querySelector("#myList")
+  while (listaNonOrdinata.firstChild) {
+    listaNonOrdinata.removeChild(listaNonOrdinata.firstChild);
+  }
+  console.log(listaNonOrdinata)
+}
+
+svuotaLista()
+
 /* ESERCIZIO 26
   Scrivi una funzione per aggiungere ad ogni tag <tr> la classe CSS "test"
 */
+
+function trAddClass() {
+  let tuttiTr = document.querySelectorAll("tr")
+  for (let index = 0; index < tuttiTr.length; index++) {
+    const element = tuttiTr[index];
+    tuttiTr[index].classList.add("test")
+  }
+}
+trAddClass()
 
 // [EXTRA] JS Avanzato
 
@@ -553,6 +608,16 @@ console.log(selezionaTd())
   ***
 
 */
+
+function halfTree(num) {
+  for (let i = 1; i <= num; i++) {
+    console.log('*'.repeat(i));
+  }
+
+}
+halfTree(4)
+
+
 
 /* ESERCIZIO 28
   Crea una funzione chiamata "tree" che riceve un numero come parametro e costruisce un albero di "*" (asterischi) dell'altezza fornita.
@@ -570,3 +635,20 @@ console.log(selezionaTd())
   Crea una funzione chiamata "isItPrime" che riceve un numero come parametro e ritorna true se il numero fornito è un numero primo.
 */
 
+function isItPrime(num) {
+
+  if (num < 2) {
+    return false;
+  }
+  for (let i = 2; i < num; i++) {
+    if (num % i === 0) {
+      return false;
+    }
+  }
+  return true;
+}
+
+console.log(isItPrime(2)); // true
+console.log(isItPrime(4)); // false
+console.log(isItPrime(13)); // true
+console.log(isItPrime(20)); // false
